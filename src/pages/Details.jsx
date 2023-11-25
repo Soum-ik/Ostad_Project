@@ -1,7 +1,8 @@
 import React from "react";
+import Layout from "../layout/Layout";
 
 function Details() {
-  return <div> Details pages</div>;
+return <Layout> Details </Layout>;
 }
 
 export default Details;
