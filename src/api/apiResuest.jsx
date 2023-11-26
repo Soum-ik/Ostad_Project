@@ -20,10 +20,21 @@ export async function postLatest() {
   }
 }
 
-
-
 export async function postList(params) {
-let res = await axios.get(`https://basic-blog.teamrabbil.com/api/post-list/${params}`);
+  let res = await axios.get(
+    `https://basic-blog.teamrabbil.com/api/post-list/${params}`
+  );
+  if (res.status === 200) {
+    return res.data;
+  } else {
+    return [];
+  }
+}
+
+export async function postDetails(params) {
+  let res = await axios.get(
+    `https://basic-blog.teamrabbil.com/api/post-details/${params}`
+  );
   if (res.status === 200) {
     return res.data;
   } else {
