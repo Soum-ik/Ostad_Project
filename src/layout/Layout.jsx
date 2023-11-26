@@ -1,24 +1,21 @@
-import { useEffect } from "react";
-import { postCatagory } from "../api/apiResuest";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { postCategories } from "../api/apiResuest";
 import { NavLink } from "react-router-dom";
 
 const Layout = (props) => {
-  const [catagory, setCatagory] = useState([]);
+  const [categories, SetCategories] = useState([]);
 
   useEffect(() => {
     (async () => {
-      let res = await postCatagory
-      ();
-      setCatagory(res);
-      console.log(res);
+      let res = await postCategories();
+      SetCategories(res);
     })();
   }, []);
 
   return (
     <div>
-      <div className="navbar top-0 fixed z-50 mb-10 bg-base-100 shadow-md">
-        <div className="navbar-start ">
+      <div className="navbar fixed z-50 top-0  shadow bg-base-100">
+        <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
@@ -41,31 +38,35 @@ const Layout = (props) => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <NavLink to={"/"}>Home</NavLink>
+                <NavLink to={"/"}>হোম</NavLink>
               </li>
-              {catagory.map((item) => (
-                <li className=" pl-2 cursor-pointer font-[25px]">
-                  <NavLink to={`/catagori/${item.id}`} key={item.id}>
-                    {item.name}
-                  </NavLink>
-                </li>
-              ))}
+              {categories.map((item, index) => {
+                return (
+                  <li key={index.toString()}>
+                    <NavLink to={"/byCategory/" + item["id"]}>
+                      {item["name"]}
+                    </NavLink>
+                  </li>
+                );
+              })}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="btn btn-ghost normal-case text-xl">MR BLOG</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <NavLink to={"/"}>Home</NavLink>
+              <NavLink to={"/"}>হোম</NavLink>
             </li>
-            {catagory.map((item) => (
-              <li className=" pl-2 cursor-pointer font-[25px]">
-                <NavLink to={`/catagori/${item.id}`} key={item.id}>
-                  {item.name}
-                </NavLink>
-              </li>
-            ))}
+            {categories.map((item, index) => {
+              return (
+                <li key={index.toString()}>
+                  <NavLink to={"/byCategory/" + item["id"]}>
+                    {item["name"]}
+                  </NavLink>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
@@ -73,4 +74,5 @@ const Layout = (props) => {
     </div>
   );
 };
+
 export default Layout;

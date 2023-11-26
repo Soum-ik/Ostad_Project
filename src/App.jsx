@@ -1,15 +1,17 @@
-import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Details from "./pages/Details";
-import Catagori from "./pages/catagori";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./pages/Home.jsx";
+import ByCategoryPage from "./pages/catagori.jsx";
+import DetailsPage from "./pages/Details.jsx";
 
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/details/:postId" element={<Details />} />
-      <Route path="/catagori/:catagotiId" element={<Catagori />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/byCategory/:categoryID" element={<ByCategoryPage />} />
+      <Route path="/details/:postID" element={<DetailsPage />} />
     </Routes>
   );
 };
+
 export default App;

@@ -1,24 +1,32 @@
 import axios from "axios";
 
-const baseUrl = "https://basic-blog.teamrabbil.com/api/post-categories";
+const BaseURL = "https://basic-blog.teamrabbil.com/api";
 
-export async function postCatagory() {
-  const response = await axios(baseUrl);
-  if (response.status === 200) {
-    return response.data;
+export async function postCategories() {
+  let res = await axios.get(BaseURL + "/post-categories");
+  if (res.status === 200) {
+    return res.data;
   } else {
-    console.log("Error:", response.status);
     return [];
   }
 }
 
-const postLsit = "https://basic-blog.teamrabbil.com/api/post-newest";
-export async function postList() {
-  const response = await axios(postLsit);
-  if (response.status === 200) {
-    return response.data;
+export async function postLatest() {
+  let res = await axios.get(BaseURL + "/post-newest");
+  if (res.status === 200) {
+    return res.data;
   } else {
-    console.log("Error:", response.status);
+    return [];
+  }
+}
+
+
+
+export async function postList(params) {
+let res = await axios.get(`https://basic-blog.teamrabbil.com/api/post-list/${params}`);
+  if (res.status === 200) {
+    return res.data;
+  } else {
     return [];
   }
 }

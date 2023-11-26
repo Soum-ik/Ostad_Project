@@ -1,4 +1,4 @@
-import { postList } from "../api/apiResuest";
+import { postLatest } from "../api/apiResuest";
 import { useState, useEffect } from "react";
 import BlogList from "../components/blogList";
 import Layout from "../layout/Layout";
@@ -8,7 +8,7 @@ const Home = () => {
 
   useEffect(() => {
     (async () => {
-      let res = await postList();
+      let res = await postLatest();
       setList(res);
       console.log(res);
     })();
